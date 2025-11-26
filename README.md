@@ -488,14 +488,13 @@ in the Software without restriction...
 ---
 
 ## 📊 Statistiche Progetto
-![GitHub stars](https://img.shields.io/github/stars/phantumblade/Android-excercises?style=social)
-![GitHub forks](https://img.shields.io/github/forks/phantumblade/Android-excercises?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/phantumblade/Android-excercises?style=social)
+![GitHub stars](https://img.shields.io/github/stars/phantumblade/Android-exercises?style=social)
+![GitHub forks](https://img.shields.io/github/forks/phantumblade/Android-exercises?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/phantumblade/Android-exercises?style=social)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/phantumblade/Android-excercises?style=flat-square)
-![GitHub issues](https://img.shields.io/github/issues/phantumblade/Android-excercises?style=flat-square)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/phantumblade/Android-excercises?style=flat-square)
-
+![GitHub last commit](https://img.shields.io/github/last-commit/phantumblade/Android-exercises?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/phantumblade/Android-exercises?style=flat-square)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/phantumblade/Android-exercises?style=flat-square)
 ---
 
 <div align="center">
