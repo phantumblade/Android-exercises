@@ -307,15 +307,15 @@ L'app richiede i seguenti permessi (già configurati in AndroidManifest.xml):
 
 | Main Screen | ListView | RecyclerView |
 |-------------|----------|--------------|
-| ![Main](screenshots/HomePage) | ![List](screenshots/Listview) | ![Recycler](screenshots/RecycleView) |
+| ![Main](screenshots/HomePage.png) | ![List](screenshots/Listview.png) | ![Recycler](screenshots/RecycleView.png) |
 
 
 | ButtonTest | Tab Navigation | Dark Theme |
 |---------------|----------------|------------|
-| ![Button](screenshots/ButtonsTest) | ![Tabs](screenshots/TabView) | ![Dark](screenshots/DarkTheme) |
+| ![Button](screenshots/ButtonsTest.png) | ![Tabs](screenshots/TabView.png) | ![Dark](screenshots/DarkTheme.png) |
 
 ### 🌄 Landscape Mode
-|![Master](screenshots/landscape)|
+|![Master](screenshots/landscape.png)|
 
 
 </div>
