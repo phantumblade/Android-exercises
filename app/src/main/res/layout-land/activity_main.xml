@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- SINISTRA: LISTA (Peso 1) -->
+    <LinearLayout
+        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RUBRICA"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <ListView
+            android:id="@+id/rubrica_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RecycleView"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_advanced"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <!-- DESTRA: DETTAGLI (Peso 1) -->
+    <!-- Questo layout esiste SOLO in landscape -->
+    <LinearLayout
+        android:id="@+id/container_dettagli"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/det_foto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/android_button_3d"/>
+
+        <TextView
+            android:id="@+id/det_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="Seleziona un contatto"/>
+
+        <TextView
+            android:id="@+id/det_cognome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/det_eta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+</LinearLayout>

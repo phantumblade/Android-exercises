@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".MainActivity">
+
+
+        <!-- 1. TextView del titolo, vincolato in alto -->
+        <TextView
+            android:id="@+id/hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/hello"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <!-- 2. TextView della data, sotto al titolo -->
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="25sp" /> <!-- 'tools:text' è un'anteprima solo per te -->
+
+        <!-- 3. Pulsante di aggiornamento, sotto la data -->
+
+        <!-- 4. L'immagine sotto al pulsante -->
+        <Button
+            android:id="@+id/dateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/orange"
+            android:text="@string/update"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/android_button_3d" />
+
+        <!-- 5. La CheckBox, sotto all'immagine -->
+        <CheckBox
+            android:id="@+id/check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Accetto i termini"
+            android:textColor="@color/white" />
+
+        <!-- 6. Il campo di testo, sotto alla CheckBox -->
+
+        <EditText
+            android:id="@+id/numberInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:digits="0123456789"
+            android:hint="Inserisci un numero"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/white" />
+
+        <!-- creaizone del primo switch -->
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:enabled="false"
+            android:text="Continua" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/theme_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="modalità notturna"
+            android:textColor="@color/white" />
+
+        <RadioGroup
+            android:id="@+id/radioG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rock" />
+
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scissors" />
+
+            <RadioButton
+                android:id="@+id/radio3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paper" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/linkWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:text="Vai al sito uniupo" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_weight="1"
+                    android:hint="Nome: " />
+
+                <EditText
+                    android:layout_weight="2"
+                    android:hint="Mario" />
+
+                <EditText
+                    android:layout_weight="3"
+                    android:hint="eta" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText android:hint="Cognome: " />
+
+                <EditText android:hint="Rossi" />
+
+                <EditText
+                    android:layout_weight="3"
+                    android:hint="eta" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:layout_span="2"
+                    android:hint="Mail" />
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioGroup
+                    android:id="@+id/orientation_group"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radio_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="horizontal" />
+
+                    <RadioButton
+                        android:id="@+id/radio_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="vertical" />
+
+                    <TableRow></TableRow>
+                </RadioGroup>
+            </TableRow>
+        </TableLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          android:padding="8dp">
+          <!-- PRIMA RIGHA ORIZZONTALE: 2 bottoni normali-->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+              <Button
+                  android:text="Button"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:layout_marginEnd="4dp"/>
+              <Button
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="Button"
+                  android:layout_weight="1"/>
+          </LinearLayout>
+          <!-- SECONDA RIGHA ORIZZONTALE: 1 bottone lungo tutta la tabella-->
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Button"/>
+          <!-- TERZA RIGHA ORIZZONTALE: 2 bottoni normali-->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+              <Button
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:text="Button"
+                  android:layout_marginEnd="4dp"/>
+              <Button
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:text="Button"
+                  android:layout_weight="1"/>
+          </LinearLayout>
+          <!-- QUARTA RIGHA ORIZZONTALE: GENERA una riga-->
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
+              <!-- 1 colonna della riga, occupa la metà sinistra dello spazio-->
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"
+                  android:orientation="vertical">
+                  <Button
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_weight="2"
+                      android:text="button"
+                      android:layout_marginEnd="4dp"/>
+                  <Button
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:text="Button"
+                      android:layout_weight="1"
+                      android:layout_marginEnd="4dp"/>
+              </LinearLayout>
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"
+                  android:orientation="vertical">
+                  <Button
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:text="Button"
+                      android:layout_weight="1"/>
+                  <Button
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:text="Button"
+                      android:layout_weight="2"/>
+              </LinearLayout>
+          </LinearLayout>
+
+      </LinearLayout>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:text="Utilizzo di relative layout"/>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <!-- 1. L'etichetta "URL". La posizioniamo in alto a sinistra. -->
+            <TextView
+                android:id="@+id/url_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="URL:"
+                android:textSize="18sp"/>
+            <EditText
+                android:id="@+id/url_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:hint="Inserisci l'URL qui" />
+
+            <!-- 2. Il bottone "OK". Lo posizioniamo prima perché altri elementi dipendono da lui. -->
+            <Button
+                android:id="@+id/ok_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/url_edit_text"
+                android:text="OK" />
+
+            <!-- 3. Il bottone "Cancel". Lo posizioniamo a sinistra del bottone "OK". -->
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/ok_button"
+            android:layout_alignTop="@id/ok_button"
+            android:text="Cancel" />
+
+            <!-- 4. Il campo di testo (EditText). Occupa lo spazio rimanente. -->
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 3: Dynamic Linearlayout"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+        <!-- Contenitore linear per questo esercizio -->
+        <LinearLayout
+            android:id="@+id/dynamic_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+            <RadioGroup
+                android:id="@+id/orientation_group2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RadioButton
+                    android:id="@+id/radio_horizontal2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="horizontal"/>
+                <RadioButton
+                    android:id="@+id/radio_vertical2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="vertical"/>
+            </RadioGroup>
+            <RadioGroup
+                android:id="@+id/graviy_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+                <RadioButton
+                    android:id="@+id/radio_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="left"/>
+                <RadioButton
+                    android:id="@+id/radio_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="right"/>
+            </RadioGroup>
+        </LinearLayout>
+
+        <!-- ============================================================= -->
+        <!-- TITOLO PER IL NUOVO ESERCIZIO "ASSIGNMENT VIII"               -->
+        <!-- ============================================================= -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 7: HorizontalScrollView"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!--
+            HORIZONTALSCROLLVIEW
+            Questo componente permette lo scorrimento orizzontale del suo unico figlio.
+        -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <!--
+                UNICO FIGLIO: UN LINEARLAYOUT ORIZZONTALE
+                Questo layout conterrà la nostra fila di bottoni.
+                La sua larghezza è `wrap_content` perché deve potersi espandere
+                oltre i limiti dello schermo per rendere necessario lo scorrimento.
+            -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <!-- Ora aggiungiamo tanti bottoni. Ho usato `layout_marginEnd`
+                     per creare un po' di spazio tra un bottone e l'altro. -->
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Button 1" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Button 2" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Button 3" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Button 4" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Button 5" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Button 6" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button 7" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: Form di registrazione"
+            android:textSize="20sp"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+        <!-- Nom e cognome: tastiera normale con maiuscola automatica-->
+        <EditText
+            android:id="@+id/name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Nome e Cognome"
+            android:inputType="textCapWords"/>
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Indirizzo Mail"
+            android:inputType="textEmailAddress"/>
+        <EditText
+            android:id="@+id/password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Password"
+            android:inputType="textPassword"/>
+        <EditText
+            android:id="@+id/confirm_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Conferma Password"
+            android:inputType="textPassword"/>
+        <EditText
+            android:id="@+id/age_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Eta"
+            android:inputType="number"/>
+        <EditText
+            android:id="@+id/phone_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Numero di telefono"
+            android:inputType="phone"/>
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Registrati"
+            android:enabled="false"/>
+
+
+        <!--Nuova esercitazione sui Listview e Adapter-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: lista di ingredienti di una pizza"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+        <!-- TextView per mostrare l'ingrediente selezionato (nella modalità singola) -->
+        <TextView
+            android:id="@+id/ingredient_selection_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Nessun ingrediente selezionato"
+            android:textSize="16sp"
+            android:textStyle="italic"/>
+        <!-- La ListView che conterrà i nostri ingredienti -->
+        <ListView
+            android:id="@+id/ingredients_listview"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="8dp" />
+
+        <!--Nuovo esercizio con Listview, scelta multipla-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: Lista della spesa"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+        <!--La lista-->
+        <ListView
+            android:id="@+id/myListView"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:choiceMode="multipleChoice"/> <!--abilita la selezione multipla dalla lista-->
+        <Button
+            android:id="@+id/btnCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Controlla selezionati"/>
+
+        <!--Spinner esercizio-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio Spinner: Seleziona la città"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/selection_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Nessuna città selezionata"
+            android:padding="8dp"/>
+        <Spinner
+            android:id="@+id/city_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp" />
+        <!--Utilizzo dell'autocompletamento del campo con AutoCOmpleteTxt-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio AutoComplete: Ricerca province (Autocomplete)"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prova a scrivere 'mil' oppure 'rom'..."
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteProvince"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Scrivi qui la provincia..."
+            android:completionThreshold="1"
+            android:layout_marginBottom="50dp"/>
+
+        <!-- Esercizio di AlertDialog-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: Alert Dialog"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Passa alla nuova pagina (con conferma)"
+            android:backgroundTint="#D32F2F"/>
+
+        <!--Nuovo Esercizio: invio di un email-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Esercizio: Invio email"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"/>
+
+        <!--Destintario-->
+        <EditText
+            android:id="@+id/dest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="A: (es. mario@rossi.it)"
+            android:inputType="textEmailAddress"/>
+        <!--Oggetto dell'email-->
+        <EditText
+            android:id="@+id/subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Oggetto"
+            android:inputType="textCapSentences"/>
+
+        <!--corpo del messaggio-->
+        <EditText
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="top|start"
+            android:hint="Scrivi qui il tuo messaggio..."
+            android:inputType="textMultiLine"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"/>
+        <!--Bottone di invio della mail-->
+        <Button
+            android:id="@+id/btnSendEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invia Email"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#2196F3"/>
+        <!--Esercizio di lancio dell'intent-->
+        <Button
+            android:id="@+id/btnShare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Condividi"
+            android:layout_marginTop="16dp" />
+        <!--Esercizio bottone browser e telefono-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 1: Bottone Browser e Phone"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"/>
+        <!--Bottone Browser-->
+        <Button
+            android:id="@+id/startBrowser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Browser (Apri Google)"/>
+        <!--Bottone Telefono-->
+        <Button
+            android:id="@+id/startPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Phone (Chiama 123456)"
+            android:backgroundTint="#4CAF50"/>
+        <!--Esercizio 2-->
+        <!-- ASSIGNMENT II: THREE INTENTS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 2: Gestione Eccezioni"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"/>
+
+        <!-- 1. Azione Standard (VIEW) -->
+        <Button
+            android:id="@+id/btnViewHttp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. VIEW + http (Funziona)" />
+
+        <!-- 2. Azione Personalizzata (LAUNCH) -->
+        <Button
+            android:id="@+id/btnLaunchHttp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. LAUNCH + http (Funziona)" />
+
+        <!-- 3. Condizione di Errore (LAUNCH + https) -->
+        <Button
+            android:id="@+id/btnException"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. LAUNCH + https (CRASH!)"
+            android:backgroundTint="#D32F2F"/>
+
+        <!--Esercizio 3: uso del telefono-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 3: Numero di telefono con Dialer Custom"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"/>
+        <TextView
+            android:id="@+id/txtPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="In attesa di una chiamata..."
+            android:textSize="18sp"/>
+        <!--Esercizio 4: come inviare SMS in diversi metodi-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 4: Invio SMS custom"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <!-- Campo per scrivere il numero di telefono -->
+        <EditText
+            android:id="@+id/sms_number_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Scrivere un numero di telefono"
+            android:inputType="phone"/>
+
+        <!-- 1. Bottone SENDTO (Metodo sicuro) -->
+        <Button
+            android:id="@+id/btn_send_sendto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invia un SMS con SENDTO" />
+
+        <!-- 2. Bottone SMS_INTENT (Metodo generico/implicito) -->
+        <Button
+            android:id="@+id/btn_send_intent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Invia SMS con SMS_INTENT" />
+
+        <!-- 3. Bottone EXCEPTION (Per causare il crash) -->
+        <Button
+            android:id="@+id/btn_exception_condition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bottone eccezione"
+            android:backgroundTint="#B00020"
+            android:textColor="#FFFFFF"/>
+
+        <!--Esercizio 5:  invio l'sms direttamente dall'app-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 5: Invio SMS dall'app"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <EditText
+            android:id="@+id/sms_manager_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="123456789"
+            android:inputType="phone"/>
+
+        <EditText
+            android:id="@+id/sms_manager_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Scrivi qui il messaggio..."
+            android:inputType="textMultiLine"/>
+
+        <!-- Bottone per inviare DIRETTAMENTE (SmsManager) -->
+        <Button
+            android:id="@+id/btn_sms_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send the sms by SmsManager"
+            android:backgroundTint="#673AB7"/>
+        <!--Esercizio di sreen Size & Units (dp vs sp)-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: DP vs SP"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Questo testo usa 20sp. Cambia le impostazioni del font per vedermi crescere!"
+            android:textSize="20sp"
+            android:padding="8dp"
+            android:background="#E0F7FA"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Questo testo usa 20dp (Sbagliato!). Se cambi il font, io rimango piccolo."
+            android:textSize="20dp"
+            android:padding="8dp"
+            android:background="#FFEBEE"/>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Largo 200dp"
+            android:layout_marginTop="16dp"/>
+
+        <!-- Questo bottone usa px (Sbagliatissimo!) -->
+        <Button
+            android:layout_width="400px"
+            android:layout_height="wrap_content"
+            android:text="Largo 400px (Varia col device)"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#FF5722"/>
+
+        <!--Esercizio 1: Rubrica Master-detail-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 1: Rubrica"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clicca un nome per i dettagli (in verticale apre pagina nuova, in orizzontale apre a fianco)"
+            android:gravity="center"
+            android:textSize="12sp"/>
+        <!--Lista Contatti-->
+        <ListView
+            android:id="@+id/rubrica_listview"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginBottom="50dp" />
+
+
+        <!--RecycleView (evoluzione delle liste)-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 2: RecycleView"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lista orizzontale che usa un layout personalzizato (Foto + testo)"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+        <!--Introduzione recycleView-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_advanced"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scrollbars="vertical"/>
+
+        <!-- ============================================================= -->
+        <!-- ESERCIZIO 3: RecyclerView con CardView                     -->
+        <!-- ============================================================= -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio 3: RecyclerView con CardView"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ogni riga è una 'carta' con angoli arrotondati e ombra."
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- La RecyclerView che userà le CardView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/card_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:padding="4dp"/>
+
+        <!-- Bottone per aprire l'esercizio delle Tab -->
+        <Button
+            android:id="@+id/btnOpenTabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apri Esercizio Tabs"
+            android:backgroundTint="@color/AndroidGreen"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"/>
+
+        <View
+    android:layout_height="400dp" android:layout_width="match_parent"/>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Application1" parent="Theme.Material3.DayNight">
+
+        <!-- Colori principali (Verde e Arancione) -->
+        <item name="colorPrimary">@color/AndroidGreen</item>
+        <item name="colorSecondary">@color/orange</item>
+
+        <!-- SFONDO e TESTO per il GIORNO -->
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+
+        <!-- Colore della status bar (la barra in alto) -->
+        <item name="android:statusBarColor">@color/AndroidGreen</item>
+    </style>
+
+    <style name="Theme.Application1" parent="Base.Theme.Application1" />
+</resources>

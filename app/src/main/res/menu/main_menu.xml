@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- OPZIONE 1: Home (Normale) -->
+    <item
+        android:id="@+id/home"
+        android:title="Home" />
+
+    <!-- OPZIONE 2: File (CON SOTTOMENU) -->
+    <!-- Questa voce contiene un altro <menu> al suo interno -->
+    <item
+        android:id="@+id/menu_file"
+        android:title="File">
+
+        <menu>
+            <!-- Sottomenu 1 -->
+            <item
+                android:id="@+id/create_new"
+                android:title="Create New" />
+
+            <!-- Sottomenu 2 -->
+            <item
+                android:id="@+id/open"
+                android:title="Open" />
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/profilo"
+        android:title="Profilo" />
+
+    <item
+        android:id="@+id/impostazioni"
+        android:title="Impostazioni" />
+
+    <item
+        android:id="@+id/esci"
+        android:title="Esci" />
+    <item
+        android:id="@+id/menu_dark_mode"
+        android:title="Dark Mode"/>
+    <item
+        android:id="@+id/menu_supersize"
+        android:title="Supersize me"/>
+
+</menu>

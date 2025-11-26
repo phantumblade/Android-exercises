@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">La mia applicazione</string>
+    <string name="hello">Ciao Mondo!</string>
+    <string name="update">Aggiorna l\'orario</string>
+    <string name="age_format">Età: %1$d</string>
+</resources>

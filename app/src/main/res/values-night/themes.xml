@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Application1" parent="Theme.Material3.DayNight">
+        <!-- Manteniamo il verde (o puoi metterne uno più spento se vuoi) -->
+        <item name="colorPrimary">@color/AndroidGreen</item>
+        <item name="colorSecondary">@color/orange</item>
+
+        <!-- Sfondo NERO di notte (Richiesto dall'assignment) -->
+        <item name="android:colorBackground">@color/black</item>
+        <!-- Testo BIANCO di notte -->
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>
