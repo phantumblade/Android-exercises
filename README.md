@@ -307,15 +307,15 @@ L'app richiede i seguenti permessi (già configurati in AndroidManifest.xml):
 
 | Main Screen | ListView | RecyclerView |
 |-------------|----------|--------------|
-| ![Main](screenshots/HomePage) | ![List](screenshots/Listview) | ![Recycler](screenshots/RecycleView) |
+| ![Main](screenshots/HomePage.png) | ![List](screenshots/Listview.png) | ![Recycler](screenshots/RecycleView.png) |
 
 
 | ButtonTest | Tab Navigation | Dark Theme |
 |---------------|----------------|------------|
-| ![Button](screenshots/ButtonsTest) | ![Tabs](screenshots/TabView) | ![Dark](screenshots/DarkTheme) |
+| ![Button](screenshots/ButtonsTest.png) | ![Tabs](screenshots/TabView.png) | ![Dark](screenshots/DarkTheme.png) |
 
 ### 🌄 Landscape Mode
-|![Master](screenshots/landscape)|
+|![Master](screenshots/landscape.png)|
 
 
 </div>
@@ -471,12 +471,10 @@ in the Software without restriction...
 
 ## 👨‍💻 Autore
 
-**[Tuo Nome]**
+**Andrea Perini**
 
-- 🌐 Website: [yourwebsite.com](https://yourwebsite.com)
-- 📧 Email: your.email@example.com
-- 💼 LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-- 🐙 GitHub: [@yourusername](https://github.com/yourusername)
+- 📧 Email: andrea.perini02@gmail.com.com
+- 🐙 GitHub: [phantumblade](https://github.com/phantumblade)
 
 ---
 
@@ -490,39 +488,21 @@ in the Software without restriction...
 ---
 
 ## 📊 Statistiche Progetto
+![GitHub stars](https://img.shields.io/github/stars/phantumblade/Android-exercises?style=social)
+![GitHub forks](https://img.shields.io/github/forks/phantumblade/Android-exercises?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/phantumblade/Android-exercises?style=social)
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/android-learning-app?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/android-learning-app?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/yourusername/android-learning-app?style=social)
-
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/android-learning-app?style=flat-square)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/android-learning-app?style=flat-square)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/android-learning-app?style=flat-square)
-
+![GitHub last commit](https://img.shields.io/github/last-commit/phantumblade/Android-exercises?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/phantumblade/Android-exercises?style=flat-square)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/phantumblade/Android-exercises?style=flat-square)
 ---
 
 <div align="center">
 
 ### ⭐ Se questo progetto ti è stato utile, lascia una stella!
 
-Made with ❤️ and ☕ by [Your Name]
+Made with ❤️ and ☕ by Andrea Perini
 
 [⬆ Torna su](#-android-learning-application)
 
 </div>
-
----
-
-## 🔜 Roadmap
-
-- [ ] Implementazione database Room
-- [ ] ViewModel e LiveData
-- [ ] Retrofit per networking
-- [ ] Coroutines per operazioni asincrone
-- [ ] Unit e UI testing
-- [ ] CI/CD con GitHub Actions
-- [ ] Compose UI migration
-
----
-
-Questo README fornisce una panoramica completa del progetto. Per domande o supporto, apri una [issue](https://github.com/yourusername/android-learning-app/issues) o contattami direttamente.
