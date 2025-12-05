@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".FirestoreQuotesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Citazioni di autori"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="128dp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Campo per l'Autore -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Autore"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/etAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Inserisci nome autore (es. Steve Jobs)"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Campo per la Citazione -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Citazione"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/etQuote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Inserisci la citazione..."
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Bottoni -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ADD TO CLOUD"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnGet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GET FROM CLOUD"
+                android:backgroundTint="#4CAF50"/>
+        </LinearLayout>
+
+        <!-- Risultati -->
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="I risultati dal database appariranno qui..."
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+</ScrollView>

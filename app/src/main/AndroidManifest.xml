@@ -21,6 +21,7 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,10 +29,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Application1">
         <activity
-            android:name=".TabActivity"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+            android:name=".FirestoreQuotesActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".ToDoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TabActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
             android:name=".DetailActivity"
             android:exported="false" />

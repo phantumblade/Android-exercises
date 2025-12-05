@@ -970,6 +970,21 @@
             android:backgroundTint="@color/AndroidGreen"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="50dp"/>
+        <Button
+            android:id="@+id/btnOpenToDo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open To Do"/>
+        <Button
+            android:id="@+id/btn_open_firestore_exercise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Vai all'esercizio Firestore Quotes"
+            android:backgroundTint="#FF5722"
+            android:padding="16dp"/>
+
+        <!-- ... fine del LinearLayout ... -->
 
         <View
     android:layout_height="400dp" android:layout_width="match_parent"/>

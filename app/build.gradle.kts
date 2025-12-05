@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -40,6 +41,9 @@ android {
 
 dependencies {
 
+    implementation(platform(libs.firebase.bom))
+    // Aggiungi la dipendenza per Firestore KTX
+    implementation(libs.firebase.firestore.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -49,5 +53,4 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.cardview)
-}
+    implementation(libs.androidx.cardview)}

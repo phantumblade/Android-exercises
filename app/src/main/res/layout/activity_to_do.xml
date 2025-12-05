@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nuovo Compito"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="128dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Input Nome -->
+    <EditText
+        android:id="@+id/etTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome Compito (es. Fare la spesa)" />
+
+    <!-- Input Data -->
+    <EditText
+        android:id="@+id/etTaskDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Seleziona data di scadenza"
+        android:focusable="false"
+        android:clickable="true"
+        android:inputType="none"/>
+
+    <!-- Input Ora -->
+    <EditText
+        android:id="@+id/etTaskTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Seleziona ora"
+        android:focusable="false"
+        android:clickable="true"
+        android:inputType="none"/>
+
+    <!-- Bottone Salva -->
+    <Button
+        android:id="@+id/btnSaveTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SALVA TASK"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lista Cose da Fare:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- La Lista -->
+    <ListView
+        android:id="@+id/listViewTasks"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

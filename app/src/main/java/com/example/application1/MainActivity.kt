@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.Date
-import android.content.Intent
 import android.net.Uri
 import com.google.android.material.switchmaterial.SwitchMaterial
 import android.widget.CheckBox
@@ -32,6 +31,7 @@ import android.widget.ListView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "LyfecycleTest"
@@ -720,6 +720,16 @@ class MainActivity : AppCompatActivity() {
         val btnOpenTabs = findViewById<Button>(R.id.btnOpenTabs) // Assicurati di creare questo bottone nell'XML!
         btnOpenTabs?.setOnClickListener {
             val intent = Intent(this, TabActivity::class.java)
+            startActivity(intent)
+        }
+        val btnToDo = findViewById<Button>(R.id.btnOpenToDo) // Crea il bottone nell'XML prima!
+        btnToDo.setOnClickListener {
+            startActivity(Intent(this, ToDoActivity::class.java))
+        }
+        val firestoreButton = findViewById<Button>(R.id.btn_open_firestore_exercise)
+        firestoreButton.setOnClickListener {
+            // Crea un Intent per aprire la nuova Activity
+            val intent = Intent(this, FirestoreQuotesActivity::class.java)
             startActivity(intent)
         }
 

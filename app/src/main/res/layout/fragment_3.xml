@@ -2,62 +2,109 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#FFFFFF"
-    tools:context=".Fragment3">
+    android:padding="24dp"
+    android:background="#FFFFFF">
 
-    <!-- Immagine Profilo -->
-    <ImageView
-        android:id="@+id/imgProfile"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/android_button_3d"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gestione File Avanzata"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Nome Utente -->
+    <!-- CAMPO NOME FILE -->
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/lblFileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Utente Demo"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/imgProfile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:text="File Name"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Bio / Descrizione -->
-    <TextView
-        android:id="@+id/tvBio"
+    <EditText
+        android:id="@+id/etFileName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Questa è la terza scheda (Fragment 3). Qui puoi mostrare dettagli statici, impostazioni o un profilo utente."
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/tvName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.8"/>
+        android:hint="nome.txt"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@id/lblFileName"
+        app:layout_constraintBottom_toBottomOf="@id/lblFileName"
+        app:layout_constraintStart_toEndOf="@id/lblFileName"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Un bottone di azione -->
-    <Button
-        android:id="@+id/btnAction"
+    <!-- CAMPO CONTENUTO FILE -->
+    <TextView
+        android:id="@+id/lblFileData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="File Data"
         android:layout_marginTop="24dp"
-        android:text="Modifica Profilo"
-        android:backgroundTint="@color/AndroidGreen"
-        app:layout_constraintTop_toBottomOf="@id/tvBio"
+        app:layout_constraintTop_toBottomOf="@id/etFileName"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etFileData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Scrivi contenuto..."
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@id/lblFileData"
+        app:layout_constraintBottom_toBottomOf="@id/lblFileData"
+        app:layout_constraintStart_toEndOf="@id/lblFileData"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- PRIMA RIGA DI BOTTONI: SAVE e VIEW -->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAVE"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/etFileData"
+        app:layout_constraintEnd_toStartOf="@id/btnView"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/btnView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIEW"
+        app:layout_constraintTop_toTopOf="@id/btnSave"
+        app:layout_constraintStart_toEndOf="@id/btnSave"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- SECONDA RIGA DI BOTTONI: DELETE e CLEAR (NUOVI) -->
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DELETE"
+        android:backgroundTint="#D32F2F"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnSave"
+        app:layout_constraintEnd_toStartOf="@id/btnClear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CLEAR UI"
+        android:backgroundTint="#757575"
+        app:layout_constraintTop_toTopOf="@id/btnDelete"
+        app:layout_constraintStart_toEndOf="@id/btnDelete"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
