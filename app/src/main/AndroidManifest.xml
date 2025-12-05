@@ -29,6 +29,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Application1">
         <activity
+            android:name=".LoggedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" />
+        <activity
             android:name=".FirestoreQuotesActivity"
             android:exported="false" />
         <activity
