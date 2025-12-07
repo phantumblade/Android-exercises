@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-// CORREZIONE QUI: La classe deve iniziare su una riga nuova, senza "import" davanti
 class ContactAdapter(
     private val listaDati: List<Contatto>,
     private val onRowClick: (Contatto) -> Unit

@@ -773,7 +773,11 @@ class MainActivity : AppCompatActivity() {
             R.id.home -> "Hai selezionato: Home"
             R.id.create_new -> "Hai selezionato: Create New (dal sottomenu)"
             R.id.open -> "Hai selezionato: Open (dal sottomenu)"
-            R.id.profilo -> "Hai selezionato: Profilo"
+            R.id.menu_login_page -> {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                return true
+            }
             R.id.impostazioni -> "Hai selezionato: Impostazioni"
             R.id.esci -> "Hai selezionato: Esci"
             R.id.menu_supersize ->{

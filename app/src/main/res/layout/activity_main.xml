@@ -1,43 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scroll"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:fillViewport="true"
     android:scrollbars="none">
 
+    <!-- 1. APRI IL CONTENITORE PRINCIPALE (Nota: non c'è "/>" alla fine, ma solo ">") -->
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="0dp"
         tools:context=".MainActivity">
 
+    <!-- 2. LA TOOLBAR (Ora è DENTRO il LinearLayout principale) -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <!-- 1. TextView del titolo, vincolato in alto -->
+    <!-- 3. IL CONTENITORE CON PADDING (Anche questo è dentro) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- ================================================= -->
+        <!-- SEZIONE: WIDGET BASE & EVENTI                     -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Esercizio: Widget Base"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <!-- ... IL RESTO DEL TUO CODICE VA QUI ... -->
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Utilizzo di TextView, Button, ImageView, CheckBox e gestione degli eventi onClick."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 1. TextView del titolo -->
         <TextView
             android:id="@+id/hello"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
             android:text="@string/hello"
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <!-- 2. TextView della data, sotto al titolo -->
+        <!-- 2. TextView della data -->
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textSize="25sp" /> <!-- 'tools:text' è un'anteprima solo per te -->
+            android:layout_gravity="center_horizontal"
+            android:textSize="25sp" />
 
-        <!-- 3. Pulsante di aggiornamento, sotto la data -->
-
-        <!-- 4. L'immagine sotto al pulsante -->
+        <!-- 3. Pulsante di aggiornamento -->
         <Button
             android:id="@+id/dateButton"
             android:layout_width="match_parent"
@@ -47,24 +89,26 @@
             android:text="@string/update"
             android:textColor="@color/white" />
 
+        <!-- 4. L'immagine -->
         <ImageView
             android:id="@+id/icon"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
             android:src="@drawable/android_button_3d" />
 
-        <!-- 5. La CheckBox, sotto all'immagine -->
+        <!-- 5. La CheckBox -->
         <CheckBox
             android:id="@+id/check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Accetto i termini"
-            android:textColor="@color/white" />
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black" /> <!-- Cambiato a black per leggibilità su sfondo chiaro -->
 
-        <!-- 6. Il campo di testo, sotto alla CheckBox -->
-
+        <!-- 6. Il campo di testo (Password) -->
         <EditText
             android:id="@+id/numberInput"
             android:layout_width="match_parent"
@@ -76,14 +120,14 @@
             android:hint="Inserisci un numero"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" /> <!-- Cambiato a black -->
 
-        <!-- creaizone del primo switch -->
         <Button
             android:id="@+id/continue_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
             android:enabled="false"
             android:text="Continua" />
 
@@ -92,14 +136,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
             android:text="modalità notturna"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" /> <!-- Cambiato a black -->
+
+        <!-- ================================================= -->
+        <!-- SEZIONE: RADIO GROUP                              -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Esercizio: Radio Button"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selezione singola tramite RadioGroup e gestione della scelta."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"/>
 
         <RadioGroup
             android:id="@+id/radioG"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
             <RadioButton
@@ -121,12 +189,16 @@
                 android:text="Paper" />
         </RadioGroup>
 
+        <!-- Bottone Web (era sparso) -->
         <Button
             android:id="@+id/linkWeb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
             android:backgroundTint="@color/orange"
             android:text="Vai al sito uniupo" />
+
 
         <TableLayout
             android:layout_width="wrap_content"
@@ -961,35 +1033,139 @@
             android:layout_height="300dp"
             android:padding="4dp"/>
 
-        <!-- Bottone per aprire l'esercizio delle Tab -->
+        <!-- ... (qui sopra c'è la tua card_recycler_view) ... -->
+
+        <!-- ================================================= -->
+        <!-- SEZIONE: NAVIGAZIONE E FRAGMENT                   -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: Tabs e Fragment"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Esempio di navigazione a schede (Tab 1, 2, 3) utilizzando ViewPager2. Include liste e layout dinamici."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
         <Button
             android:id="@+id/btnOpenTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Apri Esercizio Tabs"
-            android:backgroundTint="@color/AndroidGreen"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="50dp"/>
+            android:text="Apri Esercizio Tabs" />
+
+        <!-- ================================================= -->
+        <!-- SEZIONE: FILE SYSTEM (INTERNAL STORAGE)           -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: To-Do List (File System)"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="App completa per salvare compiti con Data e Ora. I dati vengono salvati nella memoria interna e persistono al riavvio."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
         <Button
             android:id="@+id/btnOpenToDo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Open To Do"/>
+            android:text="Apri App To-Do" />
+
+        <!-- ================================================= -->
+        <!-- SEZIONE: FIREBASE FIRESTORE                       -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: Cloud Firestore"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvataggio di dati nel Cloud di Google. Esempio con una lista di Citazioni condivisa online in tempo reale."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
         <Button
             android:id="@+id/btn_open_firestore_exercise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Apri Citazioni Cloud" />
+
+        <!-- ================================================= -->
+        <!-- SEZIONE: FIREBASE AUTHENTICATION                  -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Vai all'esercizio Firestore Quotes"
-            android:backgroundTint="#FF5722"
-            android:padding="16dp"/>
+            android:text="Esercizio: Autenticazione Utenti"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sistema di Login e Registrazione utenti tramite email e password usando Firebase Auth."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
         <Button
             android:id="@+id/btn_open_auth_exercise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login/Registrazione"/>
+            android:text="Vai al Login"
+            android:layout_marginBottom="50dp"/>
 
+        <!-- Spazio vuoto finale per permettere lo scroll completo -->
         <View
-    android:layout_height="400dp" android:layout_width="match_parent"/>
+            android:layout_height="100dp"
+            android:layout_width="match_parent"/>
+
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>
+
