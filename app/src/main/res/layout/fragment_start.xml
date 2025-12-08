@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    tools:context=".FragmentStart">
+
+    <!-- TITOLO DELL'ESERCIZIO -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jetpack Navigation"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- SPIEGAZIONE DEL CONCETTO -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Differenza rispetto alle Tab:"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mentre le Tab mostrano schermate parallele (tutte allo stesso livello), qui stiamo creando un FLUSSO sequenziale.\n\nStiamo usando il 'Navigation Graph' per dire che da questa schermata si viaggia verso quella successiva. Android gestirà automaticamente la freccia 'Indietro' e le transizioni."
+        android:textSize="14sp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center_horizontal"/>
+
+    <!-- IL BOTTONE DI NAVIGAZIONE -->
+    <Button
+        android:id="@+id/btnGoToEnd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Avvia Navigazione (Vai al finale)"
+        android:padding="16dp"/>
+
+</LinearLayout>

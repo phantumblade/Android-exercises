@@ -742,6 +742,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
+        val btnNav = findViewById<Button>(R.id.btnOpenNavExercise)
+        btnNav.setOnClickListener {
+            val intent = Intent(this, NavigationExercisesActivity::class.java)
+            startActivity(intent)
+        }
+
+
 
         //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
     Log.d(TAG, "OnCreate() called")

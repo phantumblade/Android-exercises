@@ -60,4 +60,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.cardview)}
+    implementation(libs.androidx.cardview)
+    //dipendenze per usare i componenti di navigazione
+    // Navigazione Jetpack
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")}

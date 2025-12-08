@@ -29,6 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Application1">
         <activity
+            android:name=".NavigationExercisesActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoggedActivity"
             android:exported="false" />
         <activity
