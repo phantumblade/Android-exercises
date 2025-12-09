@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login Locale (SharedPreferences)"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Casella Username -->
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="textPersonName"/>
+
+    <!-- Casella Password -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Bottone REGISTRA (Salva i dati nel telefono) -->
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrati (Salva dati)"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#009688"/> <!-- Verde acqua -->
+
+    <!-- Bottone LOGIN (Controlla i dati) -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login (Verifica dati)"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Testo per mostrare il risultato -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stato: In attesa..."
+        android:textAlignment="center"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>
