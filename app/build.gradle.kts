@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -18,6 +19,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildFeatures {
             viewBinding = true
+            compose = true
         }
     }
 
@@ -64,4 +66,17 @@ dependencies {
     //dipendenze per usare i componenti di navigazione
     // Navigazione Jetpack
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")}
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+
+    // Dipendenze base per Compose
+    val composeBom = platform("androidx.compose:compose-bom:2024.02.00")
+    implementation(composeBom)
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3") // Material You!
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    // Questa serve per usare Compose dentro le View classiche
+    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.glance.material3)
+}

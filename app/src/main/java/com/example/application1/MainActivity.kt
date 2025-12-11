@@ -747,7 +747,24 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, NavigationExercisesActivity::class.java)
             startActivity(intent)
         }
+        // Assegniamo un nome al file delle preferenze (es. "AppPrefs")
+        val sharedPref = getSharedPreferences("AppPrefs", MODE_PRIVATE)
 
+        // Leggiamo se è la prima volta (default true se non trova nulla)
+        val isFirstRun = sharedPref.getBoolean("is_first_run", true)
+
+        if (isFirstRun) {
+            // È la prima volta! Mostriamo il benvenuto
+            Toast.makeText(this, "Benvenuto! Grazie per aver installato l'app.", Toast.LENGTH_LONG).show()
+
+            // Ora salviamo che NON è più la prima volta
+            val editor = sharedPref.edit()
+            editor.putBoolean("is_first_run", false)
+            editor.apply() // Salva le modifiche
+        } else {
+            // Non è la prima volta
+            Toast.makeText(this, "Bentornato!", Toast.LENGTH_SHORT).show()
+        }
 
 
         //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo

@@ -1,5 +1,6 @@
 package com.example.application1
 
+import android.content.Context // Import necessario
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -18,18 +19,30 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        // Se l'utente è già loggato, vai direttamente alla LoggedActivity
-        if (auth.currentUser != null) {
-            startActivity(Intent(this, LoggedActivity::class.java))
-            finish()
-        }
-
+        // Setup UI
         val etEmail = findViewById<EditText>(R.id.etLoginEmail)
         val etPassword = findViewById<EditText>(R.id.etLoginPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnGoToSignup = findViewById<Button>(R.id.btnGoToSignup)
 
-        // Bottone Login
+        // --- SHARED PREFS: RECUPERO DATI ---
+        // Apriamo il taccuino "LoginPrefs"
+        val sharedPref = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+
+        // Leggiamo i valori salvati (default stringa vuota)
+        val savedEmail = sharedPref.getString("email", "")
+        val savedPassword = sharedPref.getString("password", "")
+
+        // Se c'è qualcosa, riempiamo i campi automaticamente
+        etEmail.setText(savedEmail)
+        etPassword.setText(savedPassword)
+        // -----------------------------------
+
+        if (auth.currentUser != null) {
+            startActivity(Intent(this, LoggedActivity::class.java))
+            finish()
+        }
+
         btnLogin.setOnClickListener {
             val email = etEmail.text.toString()
             val password = etPassword.text.toString()
@@ -38,7 +51,17 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Login OK -> Vai alla LoggedActivity
+
+                            // --- SHARED PREFS: SALVATAGGIO DATI ---
+                            // Login riuscito, salviamo le credenziali per la prossima volta
+                            val editor = sharedPref.edit()
+                            editor.putString("email", email)
+                            editor.putString("password", password)
+                            editor.apply() // Conferma salvataggio
+
+                            Toast.makeText(this, "Credenziali salvate!", Toast.LENGTH_SHORT).show()
+                            // -------------------------------------
+
                             startActivity(Intent(this, LoggedActivity::class.java))
                             finish()
                         } else {
@@ -48,7 +71,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // Bottone per andare alla pagina di registrazione
         btnGoToSignup.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
         }
