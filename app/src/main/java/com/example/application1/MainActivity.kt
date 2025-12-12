@@ -826,8 +826,12 @@ class MainActivity : AppCompatActivity() {
                 CHANNEL_POLITICA -> {
                     Toast.makeText(this, "Hai aperto una notifica POLITICA! 📢", Toast.LENGTH_LONG).show()
                 }
-                // ecc...
             }
+        }
+
+        findViewById<Button>(R.id.btn_open_camera_exercise).setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java)
+            startActivity(intent)
         }
 
         //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
@@ -997,6 +1001,7 @@ startActivity(browserIntent)
 
     // Funzione generica per inviare notifiche su diversi canali
     private fun sendNotification(channelId: String, title: String, content: String) {// 1. Controllo Permessi (Standard)
+        //controllo basico per la versione di android (si puo omettere)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             if (androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
                 androidx.core.app.ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 101)
@@ -1013,7 +1018,8 @@ startActivity(browserIntent)
 
         // 3. Costruzione della notifica in base al canale
         val builder = androidx.core.app.NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.ic_stat_name)            .setContentText(content)
+            .setSmallIcon(R.drawable.ic_stat_name)
+            .setContentText(content)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 

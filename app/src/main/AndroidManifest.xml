@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <queries>
 
@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +30,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Application1">
+        android:theme="@style/Theme.Application1" >
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
         <activity
             android:name=".TaskActionActivity"
             android:exported="false" />
@@ -65,7 +69,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -95,7 +99,7 @@
             android:name=".PositiveActivity"
             android:exported="true"
             android:label="Schermata Positiva"
-            android:parentActivityName=".MainActivity"> <!-- Necessario settato a true se usiamo i filtri -->
+            android:parentActivityName=".MainActivity" > <!-- Necessario settato a true se usiamo i filtri -->
             <!-- Nuovo filtro -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -113,6 +117,7 @@
             android:exported="false"
             android:label="Laboratorio Compose"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <receiver android:name=".AlarmReceiver" />
     </application>
 
