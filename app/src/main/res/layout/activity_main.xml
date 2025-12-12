@@ -1074,7 +1074,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Esercizio: To-Do List (File System)"
+            android:text="Esercizio: To-Do List (File System) + Notifiche"
             android:textSize="20sp"
             android:textStyle="bold"
             android:padding="8dp"
@@ -1083,7 +1083,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="App completa per salvare compiti con Data e Ora. I dati vengono salvati nella memoria interna e persistono al riavvio."
+            android:text="App completa per salvare compiti con Data e Ora. I dati vengono salvati nella memoria interna e persistono al riavvio.
+Inotre contiene notifiche delle task in scadenza, quando scade puoi decidere se cancellarla"
             android:gravity="center"
             android:textSize="14sp"
             android:textColor="#757575"
@@ -1167,7 +1168,6 @@
             android:text="Evoluzione: Jetpack Navigation"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
             android:textAlignment="center"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="8dp"/>
@@ -1189,6 +1189,59 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Apri Esercizio Navigation" />
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/btn_compose_entry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+        <!-- ================================================= -->
+        <!-- SEZIONE: NOTIFICHE AVANZATE                       -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Pannello Notifiche News"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prova a disabilitare uno di questi canali nelle impostazioni!"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Bottone SPORT (Canale 1) -->
+        <Button
+            android:id="@+id/btn_notifica_sport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notifica SPORT (Con Immagine)"
+            android:backgroundTint="#4CAF50"/> <!-- Verde -->
+
+        <!-- Bottone POLITICA (Canale 2) -->
+        <Button
+            android:id="@+id/btn_notifica_politica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notifica POLITICA (Testo Lungo)"
+            android:backgroundTint="#F44336"/> <!-- Rosso -->
+
+        <!-- Bottone NEWS LOCALI (Canale 3) -->
+        <Button
+            android:id="@+id/btn_notifica_locali"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notifica NEWS LOCALI (Standard)"
+            android:backgroundTint="#2196F3"/> <!-- Blu -->
 
 
         <!-- Spazio vuoto finale per permettere lo scroll completo -->

@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Ricaricare cellulare, 10:00, 30/10/2024"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
+        android:textSize="16sp" />
 
     <!-- Bottone Delete -->
     <Button

@@ -32,16 +32,34 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import androidx.compose.foundation.layout.fillMaxWidth
 import com.google.firebase.auth.FirebaseAuth
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.ui.graphics.Color as ComposeColor
+
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "LyfecycleTest"
     private lateinit var auth: FirebaseAuth;
     private var isSupersize = false
+    //ID univoco per il canale di notifica
+    // 1. Definiamo i 3 Canali
+    private val CHANNEL_SPORT = "channel_sport"
+    private val CHANNEL_POLITICA = "channel_politica"
+    private val CHANNEL_LOCALI = "channel_locali"
+
+    private val NOTIFICATION_ID = 1 // Usiamo lo stesso ID per sovrascrivere la notifica precedente, o diverso per accumularle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge() // permette all'app di occupare lo spazio pure sotto alla barra di tato in alto e alla navigazione in basso
         setContentView(R.layout.activity_main) // collega il codice kotlin alla sua interfaccia grafica, il file xml
+        // 1. Inizializza il canale appena parte l'app
+        createNotificationChannel()
+
         //Esercizio 3:
         // Colleghiamo la TextView del layout al codice
         val txtNumber = findViewById<TextView>(R.id.txtPhoneNumber)
@@ -766,6 +784,51 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Bentornato!", Toast.LENGTH_SHORT).show()
         }
 
+        val composeBtn = findViewById<ComposeView>(R.id.btn_compose_entry)
+
+        composeBtn.setContent {
+            // Stiamo scrivendo Compose dentro XML!
+            Button(
+                onClick = {
+                    // Apre la stanza dei giochi Compose
+                    val intent = Intent(this, ComposePlaygroundActivity::class.java)
+                    startActivity(intent)
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = ComposeColor(0xFF6200EE)), // Viola
+                modifier = androidx.compose.ui.Modifier.fillMaxWidth()
+            ) {
+                Text("🚀 VAI AL LAB COMPOSE")
+            }
+        }
+
+        // ... dentro onCreate ...
+
+        findViewById<Button>(R.id.btn_notifica_sport).setOnClickListener {
+            sendNotification(CHANNEL_SPORT, "GOAL!! ⚽", "La tua squadra ha appena segnato!")
+        }
+
+        findViewById<Button>(R.id.btn_notifica_politica).setOnClickListener {
+            sendNotification(CHANNEL_POLITICA, "Breaking News 📢", "Nuova legge approvata in parlamento...")
+        }
+
+        findViewById<Button>(R.id.btn_notifica_locali).setOnClickListener {
+            sendNotification(CHANNEL_LOCALI, "Meteo Locale ☀️", "Domani previsti 25 gradi e sole.")
+        }
+
+        // CONTROLLIAMO SE C'È UN MESSAGGIO DALLA NOTIFICA
+        val canaleCliccato = intent.getStringExtra("CANALE_CLICCATO")
+        if (canaleCliccato != null) {
+            when (canaleCliccato) {
+                CHANNEL_SPORT -> {
+                    Toast.makeText(this, "Hai aperto una notifica SPORT! ⚽", Toast.LENGTH_LONG).show()
+                    // Qui potresti fare: startActivity(Intent(this, SportActivity::class.java))
+                }
+                CHANNEL_POLITICA -> {
+                    Toast.makeText(this, "Hai aperto una notifica POLITICA! 📢", Toast.LENGTH_LONG).show()
+                }
+                // ecc...
+            }
+        }
 
         //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
     Log.d(TAG, "OnCreate() called")
@@ -905,7 +968,84 @@ private fun goWeb(){
 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.uniupo.it"))
 startActivity(browserIntent)
 }
+    //creaizone del canale notifica
+    private fun createNotificationChannel() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as android.app.NotificationManager
+
+            // --- CANALE 1: SPORT ---
+            val channelSport = android.app.NotificationChannel(CHANNEL_SPORT, "Sport News", android.app.NotificationManager.IMPORTANCE_HIGH).apply {
+                description = "Notifiche riguardanti calcio, basket e tennis"
+            }
+
+            // --- CANALE 2: POLITICA ---
+            val channelPolitica = android.app.NotificationChannel(CHANNEL_POLITICA, "Politica", android.app.NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "Aggiornamenti dal parlamento e dal mondo"
+            }
+
+            // --- CANALE 3: LOCALI ---
+            val channelLocali = android.app.NotificationChannel(CHANNEL_LOCALI, "News Locali", android.app.NotificationManager.IMPORTANCE_LOW).apply {
+                description = "Cosa succede nella tua città"
+            }
+
+            // Registriamo tutti i canali
+            notificationManager.createNotificationChannels(listOf(channelSport, channelPolitica, channelLocali))
+        }
+    }
+
+
+    // Funzione generica per inviare notifiche su diversi canali
+    private fun sendNotification(channelId: String, title: String, content: String) {// 1. Controllo Permessi (Standard)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            if (androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                androidx.core.app.ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 101)
+                return
+            }
+        }
+
+        // 2. Pending Intent (Cosa succede al click)
+        val intent = android.content.Intent(this, MainActivity::class.java).apply {
+            putExtra("CANALE_CLICCATO", channelId)
+            flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent = android.app.PendingIntent.getActivity(this, 0, intent, android.app.PendingIntent.FLAG_IMMUTABLE)
+
+        // 3. Costruzione della notifica in base al canale
+        val builder = androidx.core.app.NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_stat_name)            .setContentText(content)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+
+        // --- PERSONALIZZAZIONE IN BASE AL TIPO ---
+        when (channelId) {
+            CHANNEL_SPORT -> {
+                // Esempio: BigPictureStyle (Simuliamo un'immagine grande)
+                // In un caso reale useresti una vera bitmap, qui usiamo l'icona launcher ingrandita per semplicità
+                val largeIcon = android.graphics.BitmapFactory.decodeResource(resources, R.drawable.android_button_3d) // Assicurati di avere un'immagine drawable
+                builder.setLargeIcon(largeIcon)
+                builder.setStyle(androidx.core.app.NotificationCompat.BigPictureStyle()
+                    .bigPicture(largeIcon)
+                    .bigLargeIcon(null as Bitmap?))
+            }
+            CHANNEL_POLITICA -> {
+                // Esempio: BigTextStyle (Per testi molto lunghi)
+                val testoLungo = "Ultim'ora: Approvata la legge sulle notifiche Android. Tutti gli sviluppatori dovranno imparare a usare i Canali correttamente entro domani mattina o i loro telefoni smetteranno di suonare!"
+                builder.setStyle(androidx.core.app.NotificationCompat.BigTextStyle().bigText(testoLungo))
+            }
+        }
+
+        // 4. Invio
+        with(androidx.core.app.NotificationManagerCompat.from(this)) {
+            if (androidx.core.app.ActivityCompat.checkSelfPermission(this@MainActivity, android.Manifest.permission.POST_NOTIFICATIONS) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                // Usiamo l'ora corrente come ID per averne multiple, oppure un ID fisso per sovrascriverle
+                notify(System.currentTimeMillis().toInt(), builder.build())
+            }
+        }
+    }
 }
+
+
 
 //creazione di una claaae semplice per mantentere i dati insieme
 data class Contatto(

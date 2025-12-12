@@ -17,6 +17,8 @@
         </intent>
     </queries> <!-- Permesso per inviare SMS direttamente (PERICOLOSO) -->
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -28,6 +30,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Application1">
+        <activity
+            android:name=".TaskActionActivity"
+            android:exported="false" />
         <activity
             android:name=".NavigationExercisesActivity"
             android:exported="false" />
@@ -103,6 +108,12 @@
                 <data android:scheme="http" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ComposePlaygroundActivity"
+            android:exported="false"
+            android:label="Laboratorio Compose"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <receiver android:name=".AlarmReceiver" />
     </application>
 
 </manifest>
