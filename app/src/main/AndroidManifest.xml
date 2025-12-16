@@ -95,6 +95,7 @@
                 <data android:scheme="smsto" />
             </intent-filter>
         </activity> <!-- Sec0nda pagina dell'app -->
+        <activity android:name=".ShoppingListActivity"/>
         <activity
             android:name=".PositiveActivity"
             android:exported="true"

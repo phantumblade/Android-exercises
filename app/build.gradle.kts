@@ -79,4 +79,5 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
+    implementation("com.google.firebase:firebase-database")
 }

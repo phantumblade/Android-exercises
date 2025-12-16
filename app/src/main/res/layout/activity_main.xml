@@ -1271,6 +1271,35 @@ Inotre contiene notifiche delle task in scadenza, quando scade puoi decidere se 
             android:text="Apri Fotocamera"
             android:layout_marginBottom="50dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: Shopping List con realtime DB "
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text= "Sistema di lista della spesa con salvataggio nel cloud con realtime database degli oggetti"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+        <Button
+            android:id="@+id/btn_open_shopping_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lista della Spesa (Auth + DB)"
+            android:layout_marginBottom="50dp"/>
+
+
         <!-- Spazio vuoto finale per permettere lo scroll completo -->
         <View
             android:layout_height="100dp"

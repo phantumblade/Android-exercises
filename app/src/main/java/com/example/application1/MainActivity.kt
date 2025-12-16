@@ -40,6 +40,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.ui.graphics.Color as ComposeColor
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 
 
 class MainActivity : AppCompatActivity() {
@@ -192,18 +194,18 @@ class MainActivity : AppCompatActivity() {
         // 4. Colleghiamo l'adapter alla ListView
         if (ingredientsListView != null) {
             ingredientsListView.adapter = arrayAdapter
-            
+
             // --- FASE 2: GESTIRE IL CLICK (SELEZIONE SINGOLA) ---
             //5. Impostiamo un listener per sapere quando un elemento viene cliccato
             ingredientsListView.setOnItemClickListener { parent, view, position, id ->
                 // Recuperiamo l'ingrediente cliccato usando la sua posizione
                 val selectedIngredient = ingredients[position]
-    
+
                 // Aggiorniamo il TextView in alto
                 if (selectionTextView != null) {
                     selectionTextView.text = "Scelta: $selectedIngredient"
                 }
-    
+
                 // Mostriamo un Toast per dare un feedback immediato
                 Toast.makeText(this, "Hai cliccato: $selectedIngredient", Toast.LENGTH_SHORT).show()        }
         }
@@ -215,7 +217,7 @@ class MainActivity : AppCompatActivity() {
         //Trova  la listview
         val listView: ListView? = findViewById(R.id.myListView)
         val button: Button? = findViewById(R.id.btnCheck)
-        
+
         if (listView != null) {
             //introduzione adapter
             //prendo la lista dal layout standard di android e ci metto l'array di prodotti
@@ -223,7 +225,7 @@ class MainActivity : AppCompatActivity() {
             //colelgo l'adapter alla lista
             listView.adapter = adapter
         }
-        
+
         //bottone: al click ritorna cosa si è spuntato
         button?.setOnClickListener {
             if (listView != null) {
@@ -272,7 +274,7 @@ class MainActivity : AppCompatActivity() {
                     val selectedCity = cities[position]
                     resultText?.text = "Hai scelto: $selectedCity"
                 }
-    
+
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                     //non faccio nulla se l'adapter si svuota (non succede)
                 }
@@ -308,7 +310,7 @@ class MainActivity : AppCompatActivity() {
             // 3. Creiamo l'Adapter
             // Usiamo un layout semplice di Android per mostrare le righe suggerite
             val autoAdapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, province)
-    
+
             // 4. Colleghiamo l'adapter
             autoCompleteTV.setAdapter(autoAdapter)
         }
@@ -365,7 +367,7 @@ class MainActivity : AppCompatActivity() {
                 //recupero cio che e stato scritto nei campi
                 val destinatario = dest.text.toString()
                 val oggetto = subject.text.toString()
-    
+
                 //controllo se manca la mail
                 if(destinatario.isEmpty()){
                     dest.error = "Inserisci un destinatario!"
@@ -377,7 +379,7 @@ class MainActivity : AppCompatActivity() {
                 //mostro nel messaggio a chi stiamo inviando la mail
                 builder.setMessage("Sei sicuro di voler inviare una mail a: \n$destinatario\n con oggetto: '$oggetto'?")
                 builder.setIcon(android.R.drawable.ic_dialog_email)
-    
+
                 //tasto si:
                 builder.setPositiveButton("Si, Invia"){
                     dialog, which ->
@@ -394,7 +396,7 @@ class MainActivity : AppCompatActivity() {
                     //recupero ora anche il corpo della mail
                     val corpoMessaggio = body.text.toString()
                     emailIntent.putExtra(Intent.EXTRA_TEXT, corpoMessaggio)
-    
+
                     //lancio il chooser (menu a scelta)
                     try {
                         // createChooser è elegante: mostra "Scegli un client mail..."
@@ -407,13 +409,13 @@ class MainActivity : AppCompatActivity() {
                     subject.text.clear()
                     body.text.clear()
                 }
-    
+
                 //Tasto no:
                 builder.setNegativeButton("No, Aspetta"){dialog, which ->
                     //chiude il dialog e non fa nulla
                     dialog.dismiss()
                 }
-    
+
                 //mostra il dialog
                 builder.create().show()
             }
@@ -427,23 +429,23 @@ class MainActivity : AppCompatActivity() {
             if (url != null) {
                 //prendi il testo scritto dall'utente
                 var urlString = url.text.toString() // Chiamiamola urlString per non confonderci
-    
+
                 //piccolo controllo: se l'utente ha scordato http:// ce lo mettiamo noi
                 if(!urlString.startsWith("http://") && !urlString.startsWith("https://")){
                     urlString = "http://" + urlString
                 }
-    
+
                 // --- MANCAVA QUESTA RIGA FONDAMENTALE ---
                 // Devi creare l'oggetto 'intent' PRIMA di passarlo al chooser!
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
-    
+
                 // Opzionale: Aggiungiamo la categoria BROWSABLE per aiutare il match
                 intent.addCategory(Intent.CATEGORY_BROWSABLE)
-    
+
                 // Crea esplicitamente il pannello di scelta
                 // Qui usiamo la variabile 'intent' che abbiamo appena creato sopra
                 val chooser = Intent.createChooser(intent, "Apri con...")
-    
+
                 try {
                     startActivity(chooser)
                 } catch (e: Exception){
@@ -834,10 +836,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Piccolo test per verficare del il realtime database funzioni
+        //val database = Firebase.database
+        //val myRef = database.getReference("test_connessione")
+
+        //myRef.setValue("CIao Firebase, sono connesso per la prima valta in tempo reale!")
+
+        //Esercizio Lista della spesa con realtime DB
+        val btnShopping = findViewById<Button>(R.id.btn_open_shopping_list)
+        btnShopping.setOnClickListener {
+            val intent = Intent(this, ShoppingListActivity::class.java)
+            startActivity(intent)
+
+
         //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
     Log.d(TAG, "OnCreate() called")
         Toast.makeText(this, "onCreate() called", Toast.LENGTH_SHORT).show()
 
+    }
     }
 
     override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
@@ -1050,13 +1066,3 @@ startActivity(browserIntent)
         }
     }
 }
-
-
-
-//creazione di una claaae semplice per mantentere i dati insieme
-data class Contatto(
-    val nome: String,
-    val cognome: String,
-    val eta: Int,
-    val fotoResId: Int
-)
