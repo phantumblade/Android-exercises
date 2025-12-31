@@ -264,15 +264,18 @@ class MainActivity : AppCompatActivity() {
             // 5. Collega l'adapter
             spinner.adapter = spinnerAdapter
            //gestione della selezione
-            spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
                     view: View?,
                     position: Int,
                     id: Long
-                ) {
-                    val selectedCity = cities[position]
-                    resultText?.text = "Hai scelto: $selectedCity"
+                ){
+
+                    val city = cities[position]
+                    if (resultText != null) {
+                        resultText.text = "Hai selezionato: $city"
+                    }
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -280,7 +283,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        //Esercizio autocomplete view
+
+        // BOTTONE PER IL NUOVO ESERCIZIO (INTERNAL STORAGE)
+        val btnStorage = findViewById<Button>(R.id.btn_open_internal_storage)
+        btnStorage?.setOnClickListener {
+            val intent = Intent(this, InternalStorageActivity::class.java)
+            startActivity(intent)
+        }
 
 // 1. Prepariamo un database di province (anche parziale)
         val province = arrayOf(

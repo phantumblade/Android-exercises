@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Titolo della pagina -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="File Manager Interno"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="128dp"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Input 1: Nome del File -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. Nome del File (es. note.txt)"/>
+    <EditText
+        android:id="@+id/etFileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="mio_diario.txt"
+        android:text="note.txt"
+        android:inputType="text"/>
+
+    <!-- Input 2: Contenuto del File -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2. Cosa vuoi scriverci?"
+        android:layout_marginTop="16dp"/>
+    <EditText
+        android:id="@+id/etFileContent"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="top|start"
+        android:background="#F0F0F0"
+        android:padding="12dp"
+        android:hint="Scrivi qui il tuo segreto..."
+        android:inputType="textMultiLine"/>
+
+    <!-- Bottoni Azione -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SALVA SU FILE"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnRead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LEGGI FILE"
+            android:backgroundTint="#009688"/>
+    </LinearLayout>
+
+    <!-- Bottone Cancella -->
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ELIMINA FILE"
+        android:backgroundTint="#D32F2F"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Area Risultati -->
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Risultato apparirà qui..."
+        android:textColor="#333"
+        android:textSize="16sp"/>
+
+</LinearLayout>
