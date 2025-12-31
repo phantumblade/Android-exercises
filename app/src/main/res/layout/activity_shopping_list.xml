@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-    <!-- La lista -->
+    <!-- 1. NUOVO BOTTONE IN CIMA -->
+    <Button
+        android:id="@+id/btnOpenConsole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apri Firebase Realtime DB"
+        android:backgroundTint="#FF9800"
+        android:layout_marginTop="128dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- 2. LA LISTA (DEVE STARE SOTTO IL BOTTONE) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shoppingRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="128dp"
+        android:layout_below="@id/btnOpenConsole"
         android:clipToPadding="false"/>
 
+    <!-- 3. IL BOTTONE + (RIMANE DOV'ERA) -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="24dp"
-        android:src="@android:drawable/ic_input_add"
-        android:contentDescription="Aggiungi oggetto" />
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_input_add" />
 
 </RelativeLayout>

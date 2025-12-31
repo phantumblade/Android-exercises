@@ -36,6 +36,16 @@ class ShoppingListActivity : AppCompatActivity() {
             return
         }
 
+        // ============================================================
+        // NUOVO: BOTTONE PER APRIRE LA CONSOLE FIREBASE
+        // ============================================================
+        val btnConsole = findViewById<android.widget.Button>(R.id.btnOpenConsole)
+        btnConsole.setOnClickListener {
+            val urlDatabase = "https://console.firebase.google.com/u/1/project/firstapplication-6f424/database/firstapplication-6f424-default-rtdb/data"
+
+            val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(urlDatabase))
+            startActivity(intent)
+        }
         //setup della lista
         recyclerView = findViewById(R.id.shoppingRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)

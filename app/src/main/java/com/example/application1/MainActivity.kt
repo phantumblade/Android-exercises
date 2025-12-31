@@ -280,7 +280,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
         //Esercizio autocomplete view
 
 // 1. Prepariamo un database di province (anche parziale)
@@ -855,7 +854,6 @@ class MainActivity : AppCompatActivity() {
 
     }
     }
-
     override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
