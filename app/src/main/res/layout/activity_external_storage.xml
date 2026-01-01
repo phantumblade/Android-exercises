@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="External Storage Manager"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="128dp"
+        android:textColor="#FF5722"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome del File (es. public_note.txt)"/>
+    <EditText
+        android:id="@+id/etExtFileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="public_note.txt"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contenuto:"
+        android:layout_marginTop="16dp"/>
+    <EditText
+        android:id="@+id/etExtFileContent"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="top|start"
+        android:background="#F0F0F0"
+        android:padding="12dp"
+        android:hint="Scrivi qualcosa da salvare nella memoria esterna..."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/btnExtSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SALVA (EXT)"
+            android:backgroundTint="#FF5722"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnExtRead"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LEGGI (EXT)"
+            android:backgroundTint="#009688"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvExtResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Risultato..."
+        android:textSize="16sp"/>
+
+</LinearLayout>

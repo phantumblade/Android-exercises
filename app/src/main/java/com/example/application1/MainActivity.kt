@@ -284,10 +284,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // BOTTONE PER IL NUOVO ESERCIZIO (INTERNAL STORAGE)
+        // NUOVO ESERCIZIO (INTERNAL STORAGE)
         val btnStorage = findViewById<Button>(R.id.btn_open_internal_storage)
         btnStorage?.setOnClickListener {
             val intent = Intent(this, InternalStorageActivity::class.java)
+            startActivity(intent)
+        }
+        // ESERCIZIO 3: EXTERNAL STORAGE
+        val btnExternal = findViewById<Button>(R.id.btnOpenExternalStorage)
+        btnExternal?.setOnClickListener {
+            val intent = Intent(this, ExternalStorageActivity::class.java)
             startActivity(intent)
         }
 

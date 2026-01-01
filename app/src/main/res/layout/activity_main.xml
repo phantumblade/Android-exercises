@@ -1283,7 +1283,7 @@ Inotre contiene notifiche delle task in scadenza, quando scade puoi decidere se 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text= "Sistema di lista della spesa con salvataggio nel cloud con realtime database degli oggetti"
+            android:text= "Sistema di lista della spesa con salvataggio nel cloud con realtime database degli oggetti. (Bottone accedibile solo dopo l'autenticazione dal bottone apposito gestito sopra)"
             android:gravity="center"
             android:textSize="14sp"
             android:textColor="#757575"
@@ -1327,6 +1327,38 @@ Inotre contiene notifiche delle task in scadenza, quando scade puoi decidere se 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Apri Diario Offline" />
+
+        <!-- ================================================= -->
+        <!-- ESERCIZIO: EXTERNAL STORAGE                       -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Esercizio: External Storage"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvataggio di file nella memoria esterna (condivisa). I file salvati qui possono essere letti collegando il telefono al PC."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+        <Button
+            android:id="@+id/btnOpenExternalStorage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apri External Storage"
+            android:layout_marginBottom="50dp"/>
 
         <!-- Spazio vuoto finale per permettere lo scroll completo -->
         <View
