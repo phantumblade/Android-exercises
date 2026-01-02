@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Persone (Realtime Sync)"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginTop="128dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Input Nome -->
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome (es. Mario)"/>
+
+    <!-- Input Cognome -->
+    <EditText
+        android:id="@+id/etSurname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cognome (es. Rossi)"/>
+
+    <!-- Input Età -->
+    <EditText
+        android:id="@+id/etAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Età (es. 30)"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/btnAddPerson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AGGIUNGI PERSONA"
+        android:backgroundTint="#673AB7"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista in Tempo Reale (Producer/Consumer):"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Dove mostriamo i dati -->
+    <TextView
+        android:id="@+id/tvPeopleList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="#F0F0F0"
+        android:layout_marginTop="10dp"
+        android:text="In attesa di dati..."/>
+
+</LinearLayout>

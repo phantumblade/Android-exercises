@@ -66,10 +66,9 @@
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
-        <activity
-            android:name=".InternalStorageActivity" />
-        <activity
-            android:name=".ExternalStorageActivity" />
+        <activity android:name=".InternalStorageActivity" />
+        <activity android:name=".ExternalStorageActivity" />
+        <activity android:name=".FirestorePeopleActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

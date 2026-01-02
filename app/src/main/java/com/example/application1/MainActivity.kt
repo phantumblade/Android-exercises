@@ -297,6 +297,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // ESERCIZIO 4: FIRESTORE PEOPLE (REALTIME)
+
+        val btnFirestorePeople = findViewById<Button>(R.id.btnOpenFirestorePeople)
+
+        btnFirestorePeople?.setOnClickListener {
+            val intent = Intent(this, FirestorePeopleActivity::class.java)
+            startActivity(intent)
+        }
+
 // 1. Prepariamo un database di province (anche parziale)
         val province = arrayOf(
             "Agrigento", "Alessandria", "Ancona", "Aosta", "Arezzo", "Ascoli Piceno", "Asti", "Avellino",
