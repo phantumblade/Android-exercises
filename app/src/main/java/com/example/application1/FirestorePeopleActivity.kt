@@ -10,12 +10,15 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,53 +27,66 @@ import java.util.UUID
 class FirestorePeopleActivity : AppCompatActivity() {
 
     private val db = Firebase.firestore
-    private lateinit var tvList: TextView
+    private lateinit var adapter: PeopleAdapter
+    private val peopleList = ArrayList<PersonModel>()
+
+    // Per le notifiche
     private val CHANNEL_ID = "firestore_channel"
     private var isFirstLoad = true
-
-    // ID Univoco di questo telefono
     private lateinit var myDeviceId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_firestore_people)
 
-        // 1. Recuperiamo o creiamo l'ID di questo telefono
+        // 1. Setup ID e Notifiche
         myDeviceId = getAppUniqueId()
-
         createNotificationChannel()
 
         val etName = findViewById<EditText>(R.id.etName)
         val etSurname = findViewById<EditText>(R.id.etSurname)
         val etAge = findViewById<EditText>(R.id.etAge)
         val btnAdd = findViewById<Button>(R.id.btnAddPerson)
-        tvList = findViewById(R.id.tvPeopleList)
+        val btnDeleteAll = findViewById<ImageButton>(R.id.btnDeleteAll)
+        val recyclerView = findViewById<RecyclerView>(R.id.rvPeople)
 
-        // 2. ASCOLTO (Consumer)
+        // 2. Configura RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = PeopleAdapter(peopleList) { idDaCancellare ->
+            deleteSinglePerson(idDaCancellare)
+        }
+        recyclerView.adapter = adapter
+
+        // 3. ASCOLTO REALTIME (Consumer + Notifiche)
         db.collection("people")
-            .addSnapshotListener { snapshots, error ->
+            .addSnapshotListener { value, error ->
                 if (error != null) {
-                    tvList.text = "Errore: ${error.message}"
+                    Toast.makeText(this, "Errore sync: ${error.message}", Toast.LENGTH_SHORT).show()
                     return@addSnapshotListener
                 }
 
-                if (snapshots != null) {
-                    val sb = StringBuilder()
-                    for (document in snapshots) {
-                        val n = document.getString("name") ?: "-"
-                        val s = document.getString("surname") ?: "-"
-                        val a = document.get("age").toString()
-                        sb.append("$n $s (Età: $a)\n\n")
+                if (value != null) {
+                    val tempPeople = ArrayList<PersonModel>()
+
+                    for (document in value) {
+                        val person = PersonModel(
+                            id = document.id,
+                            name = document.getString("name") ?: "",
+                            surname = document.getString("surname") ?: "",
+                            age = document.getLong("age")?.toInt() ?: 0
+                        )
+                        tempPeople.add(person)
                     }
-                    tvList.text = sb.toString()
 
+                    // Aggiorna la lista grafica
+                    adapter.updateData(tempPeople)
+
+                    // LOGICA NOTIFICHE
                     if (!isFirstLoad) {
-                        for (dc in snapshots.documentChanges) {
+                        for (dc in value.documentChanges) {
                             if (dc.type == DocumentChange.Type.ADDED) {
-                                // 3. CONTROLLO CHI L'HA SCRITTO
                                 val senderId = dc.document.getString("senderId")
-
-                                // Se l'ID del mittente è DIVERSO dal mio ID, allora è un'altra persona!
+                                // Se l'ID è diverso dal mio, notifica!
                                 if (senderId != myDeviceId) {
                                     val newName = dc.document.getString("name") ?: "Qualcuno"
                                     val newSurname = dc.document.getString("surname") ?: ""
@@ -83,35 +99,64 @@ class FirestorePeopleActivity : AppCompatActivity() {
                 }
             }
 
-        // 4. AGGIUNTA (Producer)
+        // 4. AGGIUNGI (Producer)
         btnAdd.setOnClickListener {
             val name = etName.text.toString()
             val surname = etSurname.text.toString()
-            val age = etAge.text.toString()
+            val ageStr = etAge.text.toString()
 
-            if (name.isNotEmpty() && surname.isNotEmpty() && age.isNotEmpty()) {
+            if (name.isNotEmpty() && surname.isNotEmpty() && ageStr.isNotEmpty()) {
                 val personMap = hashMapOf(
                     "name" to name,
                     "surname" to surname,
-                    "age" to age.toIntOrNull(),
-                    "senderId" to myDeviceId // FIRMIAMO IL MESSAGGIO!
+                    "age" to ageStr.toInt(),
+                    "senderId" to myDeviceId // Firma il messaggio
                 )
 
                 db.collection("people").add(personMap)
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Inviato!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Persona aggiunta con successo!", Toast.LENGTH_SHORT).show()
                         etName.text.clear()
                         etSurname.text.clear()
                         etAge.text.clear()
                     }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Errore inserimento", Toast.LENGTH_SHORT).show()
+                    }
             } else {
-                Toast.makeText(this, "Compila tutto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Compila tutti i campi", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // 5. ELIMINA TUTTO
+        btnDeleteAll.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Elimina Tutto")
+                .setMessage("Vuoi cancellare l'intero database?")
+                .setPositiveButton("Sì") { _, _ -> deleteAllPeople() }
+                .setNegativeButton("No", null)
+                .show()
         }
     }
 
-    // Funzione per generare un ID univoco che resta salvato nel telefono
-// NEW
+    private fun deleteSinglePerson(docId: String) {
+        db.collection("people").document(docId).delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Elemento eliminato", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun deleteAllPeople() {
+        db.collection("people").get().addOnSuccessListener { result ->
+            for (document in result) {
+                document.reference.delete()
+            }
+            Toast.makeText(this, "Database pulito!", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // --- Gestione ID e Notifiche ---
+
     private fun getAppUniqueId(): String {
         val sharedPrefs = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         var id = sharedPrefs.getString("device_uuid", null)
@@ -122,10 +167,9 @@ class FirestorePeopleActivity : AppCompatActivity() {
         return id!!
     }
 
-
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Aggiornamenti Persone"
+            val name = "Nuove Persone"
             val importance = NotificationManager.IMPORTANCE_HIGH
             val channel = NotificationChannel(CHANNEL_ID, name, importance)
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -140,9 +184,9 @@ class FirestorePeopleActivity : AppCompatActivity() {
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.ic_menu_add) // O usa R.drawable.ic_person_add se l'hai creato
-            .setContentTitle("Nuovo Utente!")
-            .setContentText("$name $surname aggiunto da un altro dispositivo.")
+            .setSmallIcon(android.R.drawable.ic_menu_add)
+            .setContentTitle("Nuova voce nel DB!")
+            .setContentText("$name $surname è stato aggiunto.")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
