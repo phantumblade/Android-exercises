@@ -1,78 +1,109 @@
 package com.example.application1
 
-import android.content.Context // Import necessario
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.application1.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
-        // Setup UI
-        val etEmail = findViewById<EditText>(R.id.etLoginEmail)
-        val etPassword = findViewById<EditText>(R.id.etLoginPassword)
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
-        val btnGoToSignup = findViewById<Button>(R.id.btnGoToSignup)
-
-        // --- SHARED PREFS: RECUPERO DATI ---
-        // Apriamo il taccuino "LoginPrefs"
-        val sharedPref = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
-
-        // Leggiamo i valori salvati (default stringa vuota)
-        val savedEmail = sharedPref.getString("email", "")
-        val savedPassword = sharedPref.getString("password", "")
-
-        // Se c'è qualcosa, riempiamo i campi automaticamente
-        etEmail.setText(savedEmail)
-        etPassword.setText(savedPassword)
-        // -----------------------------------
-
-        if (auth.currentUser != null) {
-            startActivity(Intent(this, LoggedActivity::class.java))
-            finish()
-        }
-
-        btnLogin.setOnClickListener {
-            val email = etEmail.text.toString()
-            val password = etPassword.text.toString()
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-
-                            // --- SHARED PREFS: SALVATAGGIO DATI ---
-                            // Login riuscito, salviamo le credenziali per la prossima volta
-                            val editor = sharedPref.edit()
-                            editor.putString("email", email)
-                            editor.putString("password", password)
-                            editor.apply() // Conferma salvataggio
-
-                            Toast.makeText(this, "Credenziali salvate!", Toast.LENGTH_SHORT).show()
-                            // -------------------------------------
-
-                            startActivity(Intent(this, LoggedActivity::class.java))
-                            finish()
-                        } else {
-                            Toast.makeText(this, "Login fallito: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+        // 1. Tasto ACCEDI
+        binding.btnLogin.setOnClickListener {
+            if (isInputValid()) {
+                performLogin()
             }
         }
 
-        btnGoToSignup.setOnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java))
+        // 2. Tasto REGISTRATI
+        binding.btnRegister.setOnClickListener {
+            if (isInputValid()) {
+                performRegistration() // Ora chiama la funzione corretta
+            }
         }
+    }
+
+    // --- Controlli all'avvio ---
+    override fun onStart() {
+        super.onStart()
+        // Se l'utente è già loggato, vai diretto alla schermata di Logout/Benvenuto
+        if (auth.currentUser != null) {
+            goToLoggedScreen()
+        }
+    }
+
+    // --- Validazione ---
+    private fun isInputValid(): Boolean {
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+        var isValid = true
+
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.tilEmail.error = "Email non valida"
+            isValid = false
+        } else {
+            binding.tilEmail.error = null
+        }
+
+        if (password.length < 6) {
+            binding.tilPassword.error = "Minimo 6 caratteri"
+            isValid = false
+        } else {
+            binding.tilPassword.error = null
+        }
+        return isValid
+    }
+
+    // --- Login ---
+    private fun performLogin() {
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(baseContext, "Login Riuscito!", Toast.LENGTH_SHORT).show()
+                    goToLoggedScreen()
+                } else {
+                    Toast.makeText(baseContext, "Errore Login: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    // --- Registrazione ---
+    private fun performRegistration() {
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(baseContext, "Registrato con successo!", Toast.LENGTH_SHORT).show()
+                    goToLoggedScreen()
+                } else {
+                    Toast.makeText(baseContext, "Errore Registrazione: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    // --- Navigazione ---
+    private fun goToLoggedScreen() {
+        // Invece di MainActivity, andiamo alla nuova LoggedActivity
+        val intent = Intent(this, LoggedActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }

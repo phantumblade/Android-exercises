@@ -3,22 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:padding="24dp">
 
     <TextView
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You have successfully logged in. Welcome!"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_marginBottom="24dp"/>
+        android:text="Benvenuto Utente!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:backgroundTint="#00695C"/>
+        android:text="LOGOUT"
+        android:backgroundTint="#D32F2F"/>
 
 </LinearLayout>
+    
