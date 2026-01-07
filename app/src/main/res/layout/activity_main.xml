@@ -1392,6 +1392,39 @@ Inotre contiene notifiche delle task in scadenza, quando scade puoi decidere se 
             android:text="Apri Firestore People"
             android:layout_marginBottom="50dp"/>
 
+        <!-- ================================================= -->
+        <!-- ASSIGNMENT: REGISTRAZIONE CON FOTO                -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Assignment: Registrazione con Foto"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Form completo che richiede info utente e permette il caricamento di una foto profilo tramite Fotocamera o Galleria."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+        <Button
+            android:id="@+id/btnRegistrationPro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apri Registrazione Pro"
+            android:layout_marginBottom="50dp"/>
+
+
         <!-- Spazio vuoto finale per permettere lo scroll completo -->
         <View
             android:layout_height="100dp"

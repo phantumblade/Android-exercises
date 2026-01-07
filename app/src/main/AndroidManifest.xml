@@ -59,6 +59,7 @@
         <activity
             android:name=".ToDoActivity"
             android:exported="false" />
+        <activity android:name=".RegistrationProActivity" />
         <activity
             android:name=".TabActivity"
             android:exported="false"

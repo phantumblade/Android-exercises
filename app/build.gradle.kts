@@ -69,6 +69,7 @@ dependencies {
     // Navigazione Jetpack
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("com.google.firebase:firebase-storage-ktx")
 
     // Dipendenze base per Compose
     val composeBom = platform("androidx.compose:compose-bom:2024.02.00")

@@ -306,6 +306,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Esercizio registrazioe pro con caricamento immagine profilo
+        val btnRegistrationPro = findViewById<Button>(R.id.btnRegistrationPro)
+        btnRegistrationPro?.setOnClickListener {
+            val intent = Intent(this, RegistrationProActivity::class.java)
+            startActivity(intent)
+        }
 // 1. Prepariamo un database di province (anche parziale)
         val province = arrayOf(
             "Agrigento", "Alessandria", "Ancona", "Aosta", "Arezzo", "Ascoli Piceno", "Asti", "Avellino",
