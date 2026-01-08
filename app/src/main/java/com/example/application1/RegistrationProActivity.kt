@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore // <--- IMPORTANTE
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 import java.util.UUID
@@ -30,20 +31,20 @@ class RegistrationProActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var storage: FirebaseStorage
 
-    // 1. Launcher per SCATTARE FOTO (ritorna una miniatura Bitmap)
+    // 1. Launcher per SCATTARE FOTO
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap: Bitmap? ->
         if (bitmap != null) {
             imgProfile.setImageBitmap(bitmap)
-            imgProfile.setPadding(0, 0, 0, 0) // Rimuovi il padding dell'icona
+            imgProfile.setPadding(0, 0, 0, 0)
             isPhotoSelected = true
         }
     }
 
-    // 2. Launcher per CERCARE IN GALLERIA (ritorna un Uri)
+    // 2. Launcher per CERCARE IN GALLERIA
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
             imgProfile.setImageURI(uri)
-            imgProfile.setPadding(0, 0, 0, 0) // Rimuovi il padding dell'icona
+            imgProfile.setPadding(0, 0, 0, 0)
             isPhotoSelected = true
         }
     }
@@ -54,7 +55,11 @@ class RegistrationProActivity : AppCompatActivity() {
 
         // Inizializza Firebase
         auth = FirebaseAuth.getInstance()
+
+        // Se hai creato un bucket manuale, usa il suo indirizzo qui, altrimenti usa .getInstance() vuoto
+        // Se ti dava problemi prima, lascia pure l'indirizzo specifico che avevi
         storage = FirebaseStorage.getInstance("gs://firstapplication-6f424.firebasestorage.app")
+
         // Binding
         imgProfile = findViewById(R.id.imgProfile)
         val btnCamera = findViewById<Button>(R.id.btnCamera)
@@ -65,17 +70,9 @@ class RegistrationProActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
         val btnRegister = findViewById<Button>(R.id.btnRegisterUser)
 
-        // Listener Fotocamera
-        btnCamera.setOnClickListener {
-            takePictureLauncher.launch(null)
-        }
+        btnCamera.setOnClickListener { takePictureLauncher.launch(null) }
+        btnGallery.setOnClickListener { pickImageLauncher.launch("image/*") }
 
-        // Listener Galleria
-        btnGallery.setOnClickListener {
-            pickImageLauncher.launch("image/*")
-        }
-
-        // Listener Registrazione
         btnRegister.setOnClickListener {
             if (validateForm()) {
                 performRegistration()
@@ -96,18 +93,20 @@ class RegistrationProActivity : AppCompatActivity() {
         val email = etEmail.text.toString()
         val password = etPassword.text.toString()
 
-        // 1. Crea l'utente su Firebase Auth
+        // 1. Crea l'utente su Firebase Auth (Login)
         auth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener { authResult ->
                 val userId = authResult.user?.uid
-                Toast.makeText(this, "Utente creato! Caricamento foto...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Account creato! Salvataggio dati...", Toast.LENGTH_SHORT).show()
 
-                // 2. Se l'utente ha scelto una foto, caricala su Storage
-                if (isPhotoSelected && userId != null) {
-                    uploadImageToStorage(userId)
-                } else {
-                    // Nessuna foto scelta, finiamo qui
-                    finishRegistration()
+                if (userId != null) {
+                    // 2. Se c'è la foto, caricala su Storage -> Poi salva su Firestore
+                    if (isPhotoSelected) {
+                        uploadImageToStorage(userId)
+                    } else {
+                        // 3. Se NON c'è la foto, salva SUBITO su Firestore (senza url)
+                        saveUserToFirestore(userId, "")
+                    }
                 }
             }
             .addOnFailureListener { e ->
@@ -116,34 +115,57 @@ class RegistrationProActivity : AppCompatActivity() {
     }
 
     private fun uploadImageToStorage(userId: String) {
-        // Riferimento a dove salvare la foto: images/UID_profile.jpg
         val storageRef = storage.reference.child("profile_images/${userId}.jpg")
 
-        // Ottieni la bitmap dalla ImageView (sia che venga da Camera o Galleria)
         imgProfile.isDrawingCacheEnabled = true
         imgProfile.buildDrawingCache()
         val bitmap = (imgProfile.drawable as BitmapDrawable).bitmap
-
-        // Comprimi la bitmap in JPEG
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
-        // Carica i dati (UploadTask)
         val uploadTask = storageRef.putBytes(data)
 
         uploadTask.addOnSuccessListener {
-            // Foto caricata con successo
-            // Se vuoi, qui puoi ottenere l'URL pubblico: storageRef.downloadUrl...
-            finishRegistration()
+            // FOTO CARICATA -> Ora prendiamo l'URL pubblico per salvarlo nel DB
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                // Abbiamo l'URL: Ora salviamo l'utente nel Database
+                saveUserToFirestore(userId, uri.toString())
+            }
         }.addOnFailureListener {
-            Toast.makeText(this, "Errore caricamento foto", Toast.LENGTH_SHORT).show()
-            finishRegistration() // Chiudiamo comunque l'activity
+            Toast.makeText(this, "Errore foto, salvo senza immagine", Toast.LENGTH_SHORT).show()
+            // Se fallisce la foto, salviamo comunque l'utente nel DB
+            saveUserToFirestore(userId, "")
         }
     }
 
+    // --- NUOVA FUNZIONE FONDAMENTALE ---
+    // Questa funzione scrive i dati dentro la collezione "users" di Firestore
+    private fun saveUserToFirestore(userId: String, profileImageUrl: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        // Creiamo la mappa dei dati da salvare
+        val userMap = hashMapOf(
+            "uid" to userId,
+            "name" to etName.text.toString(),
+            "surname" to etSurname.text.toString(),
+            "email" to etEmail.text.toString(),
+            "profileImage" to profileImageUrl
+        )
+
+        // Scrittura nel database
+        db.collection("users").document(userId).set(userMap)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Registrazione completata e salvata!", Toast.LENGTH_LONG).show()
+                finish() // Chiude la pagina e torna indietro
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Errore salvataggio DB: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
     private fun finishRegistration() {
-        Toast.makeText(this, "Registrazione completata con successo!", Toast.LENGTH_LONG).show()
-        finish() // Chiudi l'activity
+        // Questa funzione ora è sostituita da saveUserToFirestore che chiama finish() alla fine
+        finish()
     }
 }

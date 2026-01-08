@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E5DDD5"
+    android:fitsSystemWindows="true"> <!-- Colore Beige WhatsApp ripristinato -->
+
+    <!-- LISTA MESSAGGI -->
+    <!-- layout_height="0dp" e layout_weight="1" sono il trucco.
+         Dicono alla lista: "Occupati tutto lo spazio disponibile".
+         Quando esce la tastiera, lo spazio diminuisce e la lista si accorcia,
+         lasciando visibile la barra sotto. -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"/>
+
+    <!-- BARRA DI INPUT -->
+    <!-- Sfondo Bianco fisso (#FFFFFF) -->
+    <LinearLayout
+        android:id="@+id/layoutSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#FFFFFF"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:elevation="8dp">
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/background_chat_input"
+            android:hint="Scrivi un messaggio..."
+            android:textColor="#000000"
+            android:textColorHint="#909090"
+            android:padding="12dp"
+            android:maxLines="4"
+            android:inputType="textCapSentences|textMultiLine"
+            android:textSize="16sp"/>
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:src="@android:drawable/ic_menu_send"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Invia"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:tint="#00897B"/> <!-- Verde scuro fisso -->
+    </LinearLayout>
+
+</LinearLayout>

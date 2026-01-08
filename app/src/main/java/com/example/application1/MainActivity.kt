@@ -873,16 +873,42 @@ class MainActivity : AppCompatActivity() {
 
         //Esercizio Lista della spesa con realtime DB
         val btnShopping = findViewById<Button>(R.id.btn_open_shopping_list)
+        //Esercizio Lista della spesa con realtime DB        val btnShopping = findViewById<Button>(R.id.btn_open_shopping_list)
         btnShopping.setOnClickListener {
             val intent = Intent(this, ShoppingListActivity::class.java)
             startActivity(intent)
+        } // <--- QUESTA PARENTESI CHIUSA VA QUI! (Prima chiudeva molto più in basso)
+
+        // --- Esercizio: CHAT (Ora è fuori e indipendente) ---
+        val btnChat = findViewById<Button>(R.id.btnOpenChatApp)
+        btnChat.setOnClickListener {
+            // Controlliamo se l'utente è già loggato
+            val currentUser = FirebaseAuth.getInstance().currentUser
+
+            if (currentUser != null) {
+                // SE È LOGGATO: Apri la lista utenti per scegliere con chi chattare
+                val intent = Intent(this, UsersListActivity::class.java)
+                startActivity(intent)
+            } else {
+                // SE NON È LOGGATO: Vai alla schermata di Login
+                Toast.makeText(this, "Per chattare devi prima accedere!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+
+        //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
+        Log.d(TAG, "OnCreate() called")
+        Toast.makeText(this, "onCreate() called", Toast.LENGTH_SHORT).show()
+        // } <--- CANCELLA QUESTA PARENTESI CHIUSA CHE AVEVI IN FONDO
+
 
 
         //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
     Log.d(TAG, "OnCreate() called")
         Toast.makeText(this, "onCreate() called", Toast.LENGTH_SHORT).show()
 
-    }
     }
     override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)

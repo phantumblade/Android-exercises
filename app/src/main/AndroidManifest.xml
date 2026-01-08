@@ -59,7 +59,15 @@
         <activity
             android:name=".ToDoActivity"
             android:exported="false" />
-        <activity android:name=".RegistrationProActivity" />
+        <activity
+            android:name=".RegistrationProActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <!--Activity della chat-->
+        <activity android:name=".UsersListActivity"/>
+        <activity
+            android:name=".ChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
         <activity
             android:name=".TabActivity"
             android:exported="false"
