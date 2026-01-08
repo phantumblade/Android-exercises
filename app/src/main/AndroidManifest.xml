@@ -68,6 +68,7 @@
             android:name=".ChatActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
+        <activity android:name=".MasterDetailActivity"/>
         <activity
             android:name=".TabActivity"
             android:exported="false"

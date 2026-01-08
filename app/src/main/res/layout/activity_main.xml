@@ -1462,6 +1462,39 @@ Inotre contiene notifiche delle task in scadenza, quando scade puoi decidere se 
             android:text="APRI CHAT APP"
             android:layout_marginBottom="80dp"/>
 
+        <!-- ================================================= -->
+        <!-- ESERCIZIO: MASTER-DETAIL CON FRAGMENT             -->
+        <!-- ================================================= -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="#CCCCCC"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Esercizio: Fragments Master-Detail"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dimostrazione di come due Fragment (una lista e un dettaglio) possono comunicare dentro una singola Activity."
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnOpenFragmentExercise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="APRI ESERCIZIO FRAGMENTS"/>
 
         <!-- Spazio vuoto finale per permettere lo scroll completo -->
         <View

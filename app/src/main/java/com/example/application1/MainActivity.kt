@@ -897,6 +897,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val btnFragmentExercise = findViewById<Button>(R.id.btnOpenFragmentExercise)
+        btnFragmentExercise.setOnClickListener {
+            // Lancia la nuova Activity che contiene i due Fragment
+            val intent = Intent(this, MasterDetailActivity::class.java)
+            startActivity(intent)
+        }
+
 
         //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
         Log.d(TAG, "OnCreate() called")
