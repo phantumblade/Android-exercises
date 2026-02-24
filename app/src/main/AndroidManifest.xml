@@ -61,14 +61,15 @@
             android:exported="false" />
         <activity
             android:name=".RegistrationProActivity"
+            android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
         <!--Activity della chat-->
-        <activity android:name=".UsersListActivity"/>
+        <activity android:name=".UsersListActivity" android:exported="false"/>
         <activity
             android:name=".ChatActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
-        <activity android:name=".MasterDetailActivity"/>
+        <activity android:name=".MasterDetailActivity" android:exported="false"/>
         <activity
             android:name=".TabActivity"
             android:exported="false"
@@ -76,9 +77,9 @@
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
-        <activity android:name=".InternalStorageActivity" />
-        <activity android:name=".ExternalStorageActivity" />
-        <activity android:name=".FirestorePeopleActivity"/>
+        <activity android:name=".InternalStorageActivity" android:exported="false"/>
+        <activity android:name=".ExternalStorageActivity" android:exported="false"/>
+        <activity android:name=".FirestorePeopleActivity" android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -108,7 +109,7 @@
                 <data android:scheme="smsto" />
             </intent-filter>
         </activity> <!-- Sec0nda pagina dell'app -->
-        <activity android:name=".ShoppingListActivity"/>
+        <activity android:name=".ShoppingListActivity" android:exported="false"/>
         <activity
             android:name=".PositiveActivity"
             android:exported="true"
@@ -132,7 +133,7 @@
             android:label="Laboratorio Compose"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".AlarmReceiver" android:exported="false" />
     </application>
 
 </manifest>

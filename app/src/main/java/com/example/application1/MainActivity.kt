@@ -908,13 +908,6 @@ class MainActivity : AppCompatActivity() {
         //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
         Log.d(TAG, "OnCreate() called")
         Toast.makeText(this, "onCreate() called", Toast.LENGTH_SHORT).show()
-        // } <--- CANCELLA QUESTA PARENTESI CHIUSA CHE AVEVI IN FONDO
-
-
-
-        //Nota: viene chiamato il tost on create ogni volta che si avvia l'app e ogni volta che si ruota lo schermo
-    Log.d(TAG, "OnCreate() called")
-        Toast.makeText(this, "onCreate() called", Toast.LENGTH_SHORT).show()
 
     }
     override fun onCreateOptionsMenu(menu: android.view.Menu?): Boolean {

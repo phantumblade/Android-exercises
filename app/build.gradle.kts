@@ -9,7 +9,10 @@ android {
     namespace = "com.example.application1"
     compileSdk = 36
 
-    buildFeatures {viewBinding = true}
+    buildFeatures {
+        viewBinding = true
+        compose = true
+    }
 
     defaultConfig {
         applicationId = "com.example.application1"
@@ -19,10 +22,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildFeatures {
-            viewBinding = true
-            compose = true
-        }
     }
 
     buildTypes {
@@ -40,9 +39,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
-    }
-    buildFeatures {
-        viewBinding = true
     }
 }
 

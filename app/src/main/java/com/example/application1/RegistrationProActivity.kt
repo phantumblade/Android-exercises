@@ -164,8 +164,4 @@ class RegistrationProActivity : AppCompatActivity() {
             }
     }
 
-    private fun finishRegistration() {
-        // Questa funzione ora è sostituita da saveUserToFirestore che chiama finish() alla fine
-        finish()
-    }
 }
